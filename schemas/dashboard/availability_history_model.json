@@ -1,0 +1,24 @@
+{
+  "type": "array",
+  "items": {
+    "type": "array",
+    "items": [
+      {
+        "type": "string",
+        "title": "'from' date of the interval",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2}.\\d{2}:\\d{2}:\\d{2}"
+      },
+      {
+        "type": "integer",
+        "title": "HTTP Codes for Visavail display",
+        "enum": [200, 206, 212, 500, 512]
+      },
+      {
+        "type": "string",
+        "title": "'to' date of the interval",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2}.\\d{2}:\\d{2}:\\d{2}"
+      }
+    ],
+    "additionalItems": false
+  }
+}

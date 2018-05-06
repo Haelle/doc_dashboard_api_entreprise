@@ -1,0 +1,80 @@
+openapi: 3.0.1
+info:
+  title: APIs complémentaires pour API Entreprise
+  description: >-
+    # Introduction
+
+    Ces APIs fournissent des services complémentaires à API Entreprise telle que
+      - l'état en temps réel des API principale
+      - vos statistiques de consommations
+  contact:
+    name: équipe technique
+    email: tech@entreprise.api.gouv.fr
+  license:
+    name: ???
+    url: https://github.com/etalab/watchdoge_apientreprise/blob/master/LICENSE
+  version: 0.1.0
+servers:
+  - url: https://dashboard.entreprise.api.gouv.fr
+tags:
+  - name: monitoring
+    description: status des différents services API Entreprise
+  - name: stats
+    description: vos statistiques d'utilisations des services API Entreprise
+paths:
+  /api/watchdoge/stats/jwt_usage:
+    get:
+      tags:
+        - stats
+      summary: statistiques d'utilisations d'un JWT
+      description: statisitques d'utilisations d'un JSON Web Token (JWT)
+      operationId: jwt_usage
+      responses:
+        '200':
+          description: statistiques d'utilisation d'un JWT
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/stats/jwt_usage.json
+  /api/watchdoge/dashboard/availability_history:
+    get:
+      tags:
+        - monitoring
+      summary: historique de disponibilité
+      description: historique de disponibilité sur 7 jours de toutes les API Entreprises
+      operationId: availability_history
+      responses:
+        '200':
+          description: historique de disponibilité
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/dashboard/availability_history.json
+  /api/watchdoge/dashboard/current_status:
+    get:
+      tags:
+        - monitoring
+      summary: Status en temps réel
+      description: status en temps réel de toutes les API Entreprise
+      operationId: current_status
+      responses:
+        '200':
+          description: Status en temps réel
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/dashboard/current_status.json
+  /api/watchdoge/dashboard/homepage_status:
+    get:
+      tags:
+        - monitoring
+      summary: Etat général des serveurs API Entreprise
+      description: description ici
+      operationId: homepage_status
+      responses:
+        '200':
+          description: Etat des serveurs
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/dashboard/homepage_status.json

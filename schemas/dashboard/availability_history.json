@@ -1,0 +1,101 @@
+{
+  "type": "object",
+  "properties": {
+    "results": {
+      "type": "array",
+      "description": "historique des disponibilités de tous les fournisseurs sur 7 jours",
+      "items": {
+        "type": "object",
+        "required": ["provider_name", "endpoints_availability_history"],
+        "properties": {
+          "provider_name": {
+            "type": "string",
+            "title": "le nom du fournisseur de données",
+            "example": "probtp"
+          },
+          "endpoints_availability_history": {
+            "type": "array",
+            "description": "liste des APIs de mise à disposition par ce fournisseur",
+            "items": {
+              "type": "object",
+              "required": ["uname", "name", "provider", "api_version", "sla", "timezone", "provider_name", "availability_history"],
+              "properties": {
+                "uname": {
+                  "type": "string",
+                  "title": "nom unique de l'API",
+                  "pattern": "^\\S*$",
+                  "example": "apie_2_attestations_cotisation_retraite_probtp"
+                },
+                "name": {
+                  "type": "string",
+                  "title": "nom affiché de l'API",
+                  "example": "Attestations cotisations retraite ProBTP"
+                },
+                "provider": {
+                  "type": "string",
+                  "title": "le nom du fournisseur de données",
+                  "example": "probtp"
+                },
+                "api_version": {
+                  "type": "integer",
+                  "title": "numéro de version de l'API",
+                  "minimum": 1,
+                  "maximum": 2,
+                  "example": 2
+                },
+                "sla": {
+                  "type": "number",
+                  "title": "disponibilité de cette API en %",
+                  "minimun": 0,
+                  "maximum": 100,
+                  "example": 99.9
+                },
+                "timezone": {
+                  "type": "string",
+                  "title": "timezone des timestamps dans availability_history",
+                  "pattern": "Europe/Paris",
+                  "example": "Europe/Paris"
+                },
+                "provider_name": {
+                  "type": [null, "string"],
+                  "title": "data source name (can be null) TODO BETTER DOC HERE",
+                  "example": null
+                },
+                "availability_history": {
+                  "type": "array",
+                  "title": "liste des intervalles de disponibilités sous la forme [from, code_http, to],[from, code_http, to]",
+                  "items": {
+                    "type": "array",
+                    "title": "Array of array for Visavail lib: [date_from, value, date_to]",
+                    "description": "This does not test availability_history integrity go to spec for that",
+                    "items": [
+                      {
+                        "type": "string",
+                        "title": "'from' date of the interval",
+                        "pattern": "^\\d{4}-\\d{2}-\\d{2}.\\d{2}:\\d{2}:\\d{2}",
+                        "example": "2018-04-29 02:00:05"
+                      },
+                      {
+                        "type": "integer",
+                        "title": "HTTP Codes for Visavail display",
+                        "enum": [200, 206, 212, 500, 512],
+                        "example": 200
+                      },
+                      {
+                        "type": "string",
+                        "title": "'to' date of the interval",
+                        "pattern": "^\\d{4}-\\d{2}-\\d{2}.\\d{2}:\\d{2}:\\d{2}",
+                        "example": "2018-04-29 12:04:26"
+                      }
+                    ],
+                    "additionalItems": false
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

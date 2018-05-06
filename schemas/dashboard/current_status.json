@@ -1,0 +1,50 @@
+{
+  "type": "object",
+  "properties": {
+    "results": {
+      "type": "array",
+      "title": "liste de toutes les API Entreprise",
+      "items": {
+        "type": "object",
+        "required": ["uname", "name", "provider", "api_version", "code", "timestamp"],
+        "properties": {
+          "uname": {
+            "type": "string",
+            "title": "nom unique de l'API",
+            "example": "apie_2_extraits_courts_inpi"
+          },
+          "name": {
+            "type": "string",
+            "title": "nom affiché de l'API",
+            "example": "Extraits courts INPI"
+          },
+          "provider": {
+            "type": "string",
+            "title": "nom du fournisseur de données",
+            "example": "inpi"
+          },
+          "api_version": {
+            "type": "integer",
+            "title": "le numéro de version de l'API",
+            "minimun": 1,
+            "maximum": 2,
+            "example": 2
+          },
+          "code": {
+            "type": "integer",
+            "title": "Code HTTP du dernier appel",
+            "minimum": 200,
+            "maximum": 550,
+            "example": 200
+          },
+          "timestamp": {
+            "type": "string",
+            "title": "timestamp du dernier appel",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}.\\d{2}:\\d{2}:\\d{2}",
+            "example": "2018-05-06T09:30:04.053Z"
+          }
+        }
+      }
+    }
+  }
+}
